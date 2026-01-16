@@ -1,161 +1,885 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nature_loverbnl | Visual Storyteller Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        :root {
-            --nature-green: #4a7c59;
-            --dark-bg: #1a1a1a;
-            --card-bg: #222222;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--dark-bg);
-            color: #c4c4c4;
-            scroll-behavior: smooth;
-        }
-        .font-serif { font-family: 'Cormorant+Garamond', serif; }
-        
-        /* Ken Burns Animation */
-        @keyframes kenBurns {
-            0% { transform: scale(1) translate(0, 0); }
-            50% { transform: scale(1.1) translate(-1%, -1%); }
-            100% { transform: scale(1) translate(0, 0); }
-        }
-        .animate-ken-burns {
-            animation: kenBurns 20s ease-in-out infinite;
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--dark-bg); }
-        ::-webkit-scrollbar-thumb { background: var(--nature-green); border-radius: 4px; }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="nature_loverbnl - Award-Recognized Travel Photographer, Filmmaker & Social Researcher. Award-winning visual storyteller from Nepal capturing cultural heritage and landscape photography." />
+  <meta name="keywords" content="photographer, filmmaker, travel photography, Nepal, visual storytelling, ethnographic, landscape, nature_loverbnl" />
+  <title>nature_loverbnl | Award-Winning Travel Photographer & Filmmaker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&family=Inter:wght@200;400;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html,body { height: 100%; scroll-behavior: smooth; }
+    
+    body {
+      background: #0a0a0a;
+      color: #f5f5f5;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+    
+    /* Animations */
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes scaleUp {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 32px;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      animation: slideInUp 0.6s ease-out;
+    }
+    
+    nav h1 {
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      background: linear-gradient(135deg, #f5f5f5 0%, rgba(255, 255, 255, 0.7) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      cursor: pointer;
+    }
+    
+    nav h1::before {
+      content: '✦ ';
+      opacity: 0.6;
+      transition: all 0.4s ease;
+      margin-right: 4px;
+    }
+    
+    nav h1:hover {
+      letter-spacing: 0.12em;
+      filter: brightness(1.2);
+    }
+    
+    nav h1:hover::before {
+      opacity: 1;
+      transform: rotate(180deg);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+    }
+    
+    nav a {
+      font-size: 10px;
+      text-transform: uppercase;
+      opacity: 0.7;
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #f5f5f5;
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    nav a:hover {
+      opacity: 1;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 0 24px;
+      margin-top: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+      pointer-events: none;
+      animation: fadeIn 1.2s ease-out;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero h1 {
+      font-size: clamp(48px, 12vw, 120px);
+      font-style: italic;
+      line-height: 0.95;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+      animation: slideInUp 0.8s ease-out 0.1s both;
+    }
+    
+    .hero .subtitle {
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 32px;
+      animation: slideInUp 0.8s ease-out 0.3s both;
+    }
+    
+    .hero .tagline {
+      font-size: 16px;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.8);
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.8;
+      animation: slideInUp 0.8s ease-out 0.5s both;
+    }
+    
+    /* Main Content */
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 80px 32px;
+    }
+    
+    section {
+      margin-bottom: 120px;
+      animation: slideInUp 0.8s ease-out both;
+    }
+    
+    section h2 {
+      font-size: clamp(32px, 8vw, 56px);
+      margin-bottom: 48px;
+      font-style: italic;
+      letter-spacing: -0.01em;
+    }
+    
+    /* Gallery */
+    .gallery {
+      column-count: 1;
+      column-gap: 24px;
+    }
+    
+    @media (min-width: 768px) {
+      .gallery { column-count: 2; }
+    }
+    
+    @media (min-width: 1024px) {
+      .gallery { column-count: 3; }
+    }
+    
+    .photo-item {
+      break-inside: avoid;
+      margin-bottom: 24px;
+      cursor: pointer;
+      animation: scaleUp 0.6s ease-out both;
+    }
+    
+    .photo-item:nth-child(1) { animation-delay: 0.1s; }
+    .photo-item:nth-child(2) { animation-delay: 0.15s; }
+    .photo-item:nth-child(3) { animation-delay: 0.2s; }
+    .photo-item:nth-child(4) { animation-delay: 0.25s; }
+    .photo-item:nth-child(5) { animation-delay: 0.3s; }
+    .photo-item:nth-child(6) { animation-delay: 0.35s; }
+    .photo-item:nth-child(n+7) { animation-delay: 0.4s; }
+    
+    .img-card {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #1a1a1a;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .img-card:hover {
+      border-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    }
+    
+    .img-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: grayscale(100%);
+      opacity: 0.8;
+      transition: filter 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .img-card:hover img {
+      filter: grayscale(15%);
+      opacity: 1;
+    }
+    
+    .photo-info {
+      padding: 16px;
+      background: #121212;
+    }
+    
+    .photo-title {
+      font-size: 18px;
+      font-style: italic;
+      color: #f5f5f5;
+      margin-bottom: 6px;
+    }
+    
+    .photo-category {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+    }
+    
+    .photo-location {
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+    }
+    
+    .about-text {
+      animation: slideInUp 0.8s ease-out both;
+    }
+    
+    .about-text h3 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      margin-top: 32px;
+      font-style: italic;
+    }
+    
+    .about-text h3:first-child {
+      margin-top: 0;
+    }
+    
+    .about-text p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    
+    .quote {
+      padding: 24px;
+      border-left: 3px solid rgba(255, 255, 255, 0.3);
+      margin: 32px 0;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.9);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .quote:hover {
+      border-left-color: rgba(255, 255, 255, 0.6);
+      transform: translateX(8px);
+    }
+    
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    
+    .skill-card {
+      padding: 24px;
+      background: #1a1a1a;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: scaleUp 0.6s ease-out both;
+    }
+    
+    .skill-card:nth-child(1) { animation-delay: 0.1s; }
+    .skill-card:nth-child(2) { animation-delay: 0.15s; }
+    .skill-card:nth-child(3) { animation-delay: 0.2s; }
+    .skill-card:nth-child(4) { animation-delay: 0.25s; }
+    .skill-card:nth-child(5) { animation-delay: 0.3s; }
+    .skill-card:nth-child(6) { animation-delay: 0.35s; }
+    
+    .skill-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      background: #222;
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .skill-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .skill-card:hover .skill-icon {
+      transform: scale(1.2) rotate(5deg);
+      animation: float 2s ease-in-out infinite;
+    }
+    
+    .skill-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .skill-type {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    /* Award Badge */
+    .award-badge {
+      display: inline-block;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+      animation: slideInUp 0.8s ease-out;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .award-badge:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+    
+    /* Contact Section */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    
+    @media (max-width: 768px) {
+      .contact-container { grid-template-columns: 1fr; }
+    }
+    
+    .contact-info {
+      animation: slideInUp 0.8s ease-out;
+    }
+    
+    .contact-info h3 {
+      font-size: 24px;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    
+    .contact-item {
+      margin-bottom: 24px;
+      transition: all 0.4s ease;
+    }
+    
+    .contact-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 8px;
+    }
+    
+    .contact-link {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-block;
+    }
+    
+    .contact-link:hover {
+      opacity: 0.7;
+      transform: translateX(4px);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #f5f5f5;
+      text-decoration: none;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 8px 0;
+    }
+    
+    .social-link:hover {
+      opacity: 0.7;
+      transform: translateY(-2px);
+    }
+    
+    .highlights-box {
+      animation: slideInUp 0.8s ease-out 0.2s both;
+      background: #1a1a1a;
+      padding: 32px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .highlights-box:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      background: #222;
+    }
+    
+    .highlights-box h3 {
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    
+    .highlights-box ul {
+      list-style: none;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+    }
+    
+    .highlights-box li {
+      margin-bottom: 16px;
+      transition: all 0.4s ease;
+      padding-left: 16px;
+    }
+    
+    .highlights-box li:hover {
+      transform: translateX(4px);
+      color: rgba(255, 255, 255, 1);
+    }
+    
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.98);
+      backdrop-filter: blur(12px);
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      padding: 20px;
+    }
+    
+    .modal.show {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .modal-content {
+      max-width: 96vw;
+      max-height: 90vh;
+      text-align: center;
+      animation: scaleUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .modal-content img {
+      max-width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+    }
+    
+    .modal-caption {
+      margin-top: 24px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 24px;
+      animation: slideInUp 0.5s ease-out 0.1s both;
+    }
+    
+    .modal-location {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      animation: slideInUp 0.5s ease-out 0.2s both;
+    }
+    
+    /* Footer */
+    footer {
+      background: #121212;
+      padding: 48px 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 12px;
+      animation: slideInUp 0.8s ease-out;
+    }
+    
+    footer p {
+      line-height: 1.8;
+    }
+    
+    /* Responsive */
+    @media (max-width: 640px) {
+      nav {
+        padding: 16px 20px;
+      }
+      
+      nav h1 {
+        font-size: 12px;
+      }
+      
+      nav ul {
+        gap: 16px;
+      }
+      
+      nav a {
+        font-size: 8px;
+      }
+      
+      main {
+        padding: 60px 20px;
+      }
+      
+      section {
+        margin-bottom: 80px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <!-- Navigation -->
+  <nav>
+    <h1>nature_loverbnl</h1>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <nav class="fixed top-0 w-full z-50 bg-[#1a1a1a]/90 backdrop-blur-md border-b border-[#3a3a3a]">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="#" class="text-2xl font-serif text-white hover:text-[#4a7c59] transition">nature_loverbnl</a>
-            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest">
-                <a href="#gallery" class="hover:text-white transition">Gallery</a>
-                <a href="#about" class="hover:text-white transition">Narrative</a>
-                <a href="#toolkit" class="hover:text-white transition">Toolkit</a>
-                <a href="#contact" class="hover:text-white transition">Contact</a>
-            </div>
-        </div>
-    </nav>
+  <!-- Hero Section -->
+  <section class="hero" id="work">
+    <div class="hero-content">
+      <h1>Capturing the Soul of Nepal</h1>
+      <p class="subtitle">Award-Recognized Photographer | Filmmaker | Storyteller</p>
+      <p class="tagline">I photograph landscapes, cultures, and human moments that reveal the profound emotion and deep meaning embedded in everyday life.</p>
+    </div>
+  </section>
 
-    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1560086128-ec58c0bcc507?auto=format&fit=crop&q=80&w=1920" 
-                 alt="Himalayan Landscape" 
-                 class="w-full h-full object-cover animate-ken-burns opacity-60">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80"></div>
+  <!-- Main Content -->
+  <main>
+    <!-- About Section -->
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="award-badge">🏆 Featured Pexels Photographer | 9th Annual International 35 AWARDS Winner</div>
+      
+      <div class="about-grid">
+        <div class="about-text">
+          <h3>Visual Storytelling</h3>
+          <p>I am an award-winning travel photographer and filmmaker specializing in landscape and cultural photography. My work captures the raw beauty of Nepal—from the majestic Himalayas to intimate cultural moments—through a lens that honors both nature and humanity.</p>
+          
+          <h3>Photography Practice</h3>
+          <p>My photography is defined by a deep connection to place and people. I work primarily in landscape, nature, and ethnographic storytelling, documenting diverse communities and ecosystems across Nepal. Each image is a meditation on light, composition, and the stories embedded in everyday moments.</p>
+          
+          <h3>Creative Direction</h3>
+          <p>As Vice President and Media Manager at Bhaktapur Junior Jaycees, I led visual projects that bridged creative excellence with community impact. My work combines technical precision with artistic vision to create compelling narratives through photography and film.</p>
         </div>
-        <div class="relative z-10 text-center px-4">
-            <h1 class="text-6xl md:text-8xl font-serif text-white mb-6">Visual Narratives</h1>
-            <p class="text-xl md:text-2xl font-light tracking-wide mb-10">Storyteller from the Himalayas | nature_loverbnl</p>
-            <a href="#gallery" class="bg-[#4a7c59] text-white px-10 py-4 text-lg hover:bg-[#3d6649] transition shadow-xl">Explore the Gallery</a>
+        
+        <div class="about-text">
+          <h3>My Philosophy</h3>
+          <div class="quote">"Every photograph is a conversation between the lens and the world. I capture moments that reveal the soul of place and the essence of culture."</div>
+          
+          <div class="quote">"Photography is my language. Through it, I translate the beauty I witness into images that inspire, move, and connect people across boundaries."</div>
+          
+          <h3>Education</h3>
+          <p><strong>Bachelor's Degree in Social Work & Psychology</strong><br><strong>Khwopa College, Bhaktapur, Nepal</strong><br>A foundation that informs my empathetic approach to visual storytelling</p>
+          
+          <h3>Recognition</h3>
+          <p>Featured as a Pexels photographer and recognized in the 9th Annual International 35 AWARDS, selected from over 174 countries worldwide. My work has earned appreciation for its technical excellence and emotional resonance.</p>
         </div>
+      </div>
     </section>
 
-    <section id="about" class="py-24 bg-[#222222]">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-5xl font-serif text-white mb-8">Professional Narrative</h2>
-                    <p class="text-lg leading-relaxed mb-6">
-                        My journey began in the field of **Social Work & Psychology** at Khwopa College, Nepal. This academic foundation allows me to view photography not just as capturing light, but as a catalyst for empathy and social change.
-                    </p>
-                    <div class="border-t border-[#3a3a3a] pt-8">
-                        <h4 class="text-white font-serif text-xl mb-2">Media Leadership</h4>
-                        <p>Formerly spearheaded digital strategies at **Bhaktapur Junior Jaycees**, amplifying social impact through visual storytelling.</p>
-                    </div>
-                </div>
-                <div class="bg-[#1a1a1a] p-10 border border-[#4a7c59]/30 rounded-lg">
-                    <h3 class="text-white font-serif text-2xl mb-6">Educational Foundation</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-4">
-                            <span class="text-[#4a7c59]">●</span>
-                            <div>
-                                <p class="text-white font-semibold">Bachelor's Degree</p>
-                                <p class="text-sm">Social Work & Psychology - Khwopa College, Nepal</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2>Technical Toolkit</h2>
+      <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 48px; font-size: 14px;">Professional-grade software and analytical tools powering research-driven visual storytelling</p>
+      
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">📸</div>
+          <div class="skill-name">Lightroom Classic</div>
+          <div class="skill-type">Photo Editing & Processing</div>
         </div>
+        <div class="skill-card">
+          <div class="skill-icon">🎨</div>
+          <div class="skill-name">Photoshop</div>
+          <div class="skill-type">Image Manipulation & Design</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🎬</div>
+          <div class="skill-name">Premiere Pro</div>
+          <div class="skill-type">Video Editing & Production</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📐</div>
+          <div class="skill-name">InDesign</div>
+          <div class="skill-type">Layout & Graphic Design</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">✨</div>
+          <div class="skill-name">After Effects</div>
+          <div class="skill-type">Motion Graphics & Animation</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📊</div>
+          <div class="skill-name">SPSS</div>
+          <div class="skill-type">Statistical & Data Analysis</div>
+        </div>
+      </div>
     </section>
 
-    <section id="gallery" class="py-24 bg-[#1a1a1a]">
-        <div class="max-w-7xl mx-auto px-6 text-center mb-16">
-            <h2 class="text-5xl font-serif text-white mb-4">The Collection</h2>
-            <div class="h-1 w-20 bg-[#4a7c59] mx-auto"></div>
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Let's Connect</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3>Available for Collaborations</h3>
+          <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 32px;">I'm actively seeking exhibitions, social impact projects, and creative partnerships that tell stories of cultural heritage, community resilience, and environmental conservation.</p>
+          
+          <div class="contact-item">
+            <div class="contact-label">📧 Email</div>
+            <a href="mailto:baliman.tamang77@gmail.com" class="contact-link">baliman.tamang77@gmail.com</a>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-label">🔗 Follow & Connect</div>
+            <div class="social-links">
+              <a href="https://www.instagram.com/nature_loverbnl" target="_blank" rel="noopener noreferrer" class="social-link">📷 Instagram</a>
+              <a href="https://www.pexels.com/@natureloverbnl" target="_blank" rel="noopener noreferrer" class="social-link">🖼 Pexels</a>
+              <a href="https://youtube.com/@nature_loverbnl" target="_blank" rel="noopener noreferrer" class="social-link">🎬 YouTube</a>
+              <a href="https://www.behance.net/balimantamang" target="_blank" rel="noopener noreferrer" class="social-link">🎨 Behance</a>
+            </div>
+          </div>
         </div>
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="space-y-6">
-                <div class="relative group overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1662550112953-dc8cb4cdb70b?auto=format&fit=crop&w=800" class="hover:scale-110 transition duration-700">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition p-6 flex items-end">
-                        <p class="text-white font-serif">Himalayan Dawn</p>
-                    </div>
-                </div>
-                <img src="https://images.unsplash.com/photo-1669986480140-2c90b8edb443?auto=format&fit=crop&w=800" class="w-full">
-            </div>
-            <div class="space-y-6">
-                <img src="https://images.unsplash.com/photo-1562613312-8a2438a2cfe9?auto=format&fit=crop&w=800" class="w-full">
-                <img src="https://images.unsplash.com/photo-1703584346180-37ef5b894953?auto=format&fit=crop&w=800" class="w-full">
-            </div>
-            <div class="space-y-6">
-                <img src="https://images.unsplash.com/photo-1636543132856-8e2d31a79082?auto=format&fit=crop&w=800" class="w-full">
-                <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800" class="w-full">
-            </div>
+        
+        <div class="highlights-box">
+          <h3>Recognition & Highlights</h3>
+          <ul>
+            <li>✓ Featured Pexels Photographer with Growing Audience</li>
+            <li>✓ 9th Annual International 35 AWARDS Winner</li>
+            <li>✓ Selected from 174 Countries Worldwide</li>
+            <li>✓ Behance Portfolio Showcase & Appreciation</li>
+            <li>✓ Social Research Documentation Specialist</li>
+            <li>✓ Media & Digital Strategy Leader</li>
+          </ul>
         </div>
+      </div>
     </section>
+  </main>
 
-    <section id="toolkit" class="py-24 bg-[#222222]">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <h2 class="text-5xl font-serif text-white mb-16">Technical Toolkit</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="p-6 border border-[#3a3a3a] hover:border-[#4a7c59] transition">
-                    <p class="text-4xl mb-2">📸</p>
-                    <p class="text-white">Lightroom</p>
-                </div>
-                <div class="p-6 border border-[#3a3a3a] hover:border-[#4a7c59] transition">
-                    <p class="text-4xl mb-2">🎞️</p>
-                    <p class="text-white">Premiere Pro</p>
-                </div>
-                <div class="p-6 border border-[#3a3a3a] hover:border-[#4a7c59] transition">
-                    <p class="text-4xl mb-2">📊</p>
-                    <p class="text-white">SPSS Analysis</p>
-                </div>
-                <div class="p-6 border border-[#3a3a3a] hover:border-[#4a7c59] transition">
-                    <p class="text-4xl mb-2">✨</p>
-                    <p class="text-white">After Effects</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Modal -->
+  <div id="modal" class="modal" role="dialog" aria-hidden="true">
+    <div class="modal-content" id="modalContent">
+      <img id="modalImage" src="" alt="" />
+      <div id="modalCaption" class="modal-caption"></div>
+      <div id="modalLocation" class="modal-location"></div>
+    </div>
+  </div>
 
-    <footer id="contact" class="py-24 bg-[#1a1a1a] border-t border-[#3a3a3a]">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-5xl font-serif text-white mb-6">Let's Connect</h2>
-            <p class="mb-12">Available for social impact projects & exhibitions.</p>
-            <a href="mailto:baliman.tamang77@gmail.com" class="text-3xl text-white font-serif hover:text-[#4a7c59] transition block mb-8 underline">baliman.tamang77@gmail.com</a>
-            <div class="flex justify-center space-x-8">
-                <a href="#" class="hover:text-white transition">Instagram</a>
-                <a href="#" class="hover:text-white transition">Behance</a>
-                <a href="#" class="hover:text-white transition">YouTube</a>
-            </div>
-            <p class="mt-20 text-sm opacity-50">&copy; 2026 nature_loverbnl. Visual Storyteller from Nepal.</p>
-        </div>
-    </footer>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Baliman Tamang. All rights reserved.<br>Visual Storyteller | Social Researcher | Nature Advocate<br>Capturing stories, preserving culture, inspiring change through photography and film.</p>
+  </footer>
 
+  <script>
+    (function () {
+      // Photo Gallery Data
+      const photos = [
+        { id: 1, src: 'assets/images/hero.jpg', title: 'Rural Nepal', category: 'Landscape', loc: 'Nepal' },
+        { id: 2, src: 'assets/images/culture.jpg', title: 'Sacred Architecture', category: 'Landscape', loc: 'Bhaktapur' },
+        { id: 3, src: 'assets/images/ilam.jpg', title: 'Himalayan Majesty', category: 'Nature', loc: 'Nepal' },
+        { id: 4, src: 'assets/images/lamjung.jpg', title: 'Misty Forest', category: 'Nature', loc: 'Nepal' },
+        { id: 5, src: 'assets/images/research.jpg', title: 'Traditional Heritage', category: 'Ethnographic Storytelling', loc: 'Nepal' },
+        { id: 6, src: 'assets/images/sauraha.jpg', title: 'Mountain Valley', category: 'Landscape', loc: 'Nepal' },
+        { id: 7, src: 'assets/images/hero.jpg', title: 'Young Observer', category: 'Ethnographic Storytelling', loc: 'Nepal' },
+        { id: 8, src: 'assets/images/culture.jpg', title: 'Community Moments', category: 'Ethnographic Storytelling', loc: 'Nepal' },
+        { id: 9, src: 'assets/images/ilam.jpg', title: 'Cultural Traditions', category: 'Ethnographic Storytelling', loc: 'Ghalegaun' },
+        { id: 10, src: 'assets/images/lamjung.jpg', title: 'Wildlife Conservation', category: 'Ethnographic Storytelling', loc: 'Sauraha' },
+        { id: 11, src: 'assets/images/research.jpg', title: 'River Valley', category: 'Landscape', loc: 'Ilam' },
+        { id: 12, src: 'assets/images/sauraha.jpg', title: 'Community Life', category: 'Ethnographic Storytelling', loc: 'Sauraha' },
+        { id: 13, src: 'assets/images/hero.jpg', title: 'Creative Vision', category: 'Ethnographic Storytelling', loc: 'Nepal' },
+        { id: 14, src: 'assets/images/culture.jpg', title: 'Joyful Spirit', category: 'Ethnographic Storytelling', loc: 'Nepal' },
+        { id: 15, src: 'assets/images/ilam.jpg', title: 'Terraced Fields', category: 'Landscape', loc: 'Ilam' },
+        { id: 16, src: 'assets/images/lamjung.jpg', title: 'Mountain Village', category: 'Landscape', loc: 'Ghalegaun' },
+        { id: 17, src: 'assets/images/research.jpg', title: 'Golden Hour', category: 'Nature', loc: 'Nepal' }
+      ];
+
+      const gallery = document.getElementById('galleryContainer');
+      const modal = document.getElementById('modal');
+      const modalImage = document.getElementById('modalImage');
+      const modalCaption = document.getElementById('modalCaption');
+      const modalLocation = document.getElementById('modalLocation');
+
+      // Create Photo Card
+      function createCard(photo) {
+        const item = document.createElement('article');
+        item.className = 'photo-item';
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'button');
+        item.setAttribute('aria-label', `View ${photo.title} photo`);
+
+        const card = document.createElement('div');
+        card.className = 'img-card';
+        
+        const img = document.createElement('img');
+        img.src = photo.src;
+        img.alt = photo.title;
+        img.loading = 'lazy';
+        img.addEventListener('error', () => {
+          if (!img.src.includes('/Portfolio/')) {
+            img.src = '/Portfolio/' + photo.src;
+          }
+        });
+
+        card.appendChild(img);
+        item.appendChild(card);
+
+        const info = document.createElement('div');
+        info.className = 'photo-info';
+        
+        const title = document.createElement('div');
+        title.className = 'photo-title';
+        title.textContent = photo.title;
+        
+        const category = document.createElement('div');
+        category.className = 'photo-category';
+        category.textContent = photo.category;
+        
+        const loc = document.createElement('div');
+        loc.className = 'photo-location';
+        loc.textContent = photo.loc;
+        
+        info.appendChild(title);
+        info.appendChild(category);
+        info.appendChild(loc);
+        item.appendChild(info);
+
+        // Open Modal Function
+        function openModal() {
+          modalImage.src = photo.src;
+          modalImage.alt = photo.title;
+          modalCaption.textContent = photo.title;
+          modalLocation.textContent = photo.loc;
+          modal.classList.add('show');
+          modal.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+
+        card.addEventListener('click', openModal);
+        item.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            openModal();
+          }
+        });
+
+        return item;
+      }
+
+      // Render Gallery
+      photos.forEach(p => gallery.appendChild(createCard(p)));
+
+      // Modal Close Handlers
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.id === 'modalImage') {
+          modal.classList.remove('show');
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = 'auto';
+          setTimeout(() => { modalImage.src = ''; }, 300);
+        }
+      });
+
+      // Escape Key Handler
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+          modal.classList.remove('show');
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = 'auto';
+          setTimeout(() => { modalImage.src = ''; }, 300);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
