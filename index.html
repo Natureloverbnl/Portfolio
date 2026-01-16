@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATURE_LOVERBNL | Baliman Tamang</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #fff; scroll-behavior: smooth; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .hero-gradient { background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(5,5,5,1)); }
+        .nav-blur { background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px); }
+        .card-hover { transition: all 0.5s ease; border: 1px solid rgba(255,255,255,0.05); }
+        .card-hover:hover { border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.02); }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // --- Navigation ---
+        const Nav = () => (
+            <nav className="fixed top-0 w-full z-50 px-6 py-5 flex justify-between items-center nav-blur border-b border-white/5">
+                <div className="text-xl font-bold tracking-tighter uppercase">
+                    <span className="font-serif italic lowercase opacity-60">nature_</span>loverbnl
+                </div>
+                <div className="hidden md:flex space-x-8 text-[10px] uppercase tracking-[0.3em] font-semibold opacity-50">
+                    <a href="#about" className="hover:text-white transition">Philosophy</a>
+                    <a href="#portfolio" className="hover:text-white transition">Works</a>
+                    <a href="#experience" className="hover:text-white transition">Research</a>
+                    <a href="#contact" className="hover:text-white transition">Contact</a>
+                </div>
+            </nav>
+        );
+
+        // --- Hero Section ---
+        const Hero = () => (
+            <section className="relative h-screen flex items-center justify-center text-center px-6">
+                <div className="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80" className="w-full h-full object-cover opacity-30" alt="Himalayas" />
+                    <div className="absolute inset-0 hero-gradient"></div>
+                </div>
+                <div className="relative z-10 max-w-5xl">
+                    <h1 className="text-6xl md:text-9xl font-serif mb-4 tracking-tighter">Visual Storyteller</h1>
+                    <p className="text-[10px] md:text-xs opacity-50 font-bold tracking-[0.5em] uppercase mb-10">
+                        Baliman Tamang — Documenting Human Resilience
+                    </p>
+                    <div className="flex justify-center gap-6">
+                        <a href="#portfolio" className="bg-white text-black text-[10px] font-bold px-8 py-4 uppercase tracking-widest hover:bg-neutral-200 transition">View Archive</a>
+                    </div>
+                </div>
+            </section>
+        );
+
+        // --- About Section ---
+        const About = () => (
+            <section id="about" className="py-32 px-6 bg-neutral-950">
+                <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+                    <div className="relative">
+                        <img src="https://images.unsplash.com/photo-1544733422-251e539ca221?auto=format&fit=crop&q=80" className="rounded-sm grayscale hover:grayscale-0 transition duration-1000" alt="Baliman Tamang Portfolio" />
+                        <div className="absolute -bottom-8 -right-8 bg-white text-black p-8 hidden lg:block border border-black">
+                            <p className="text-4xl font-serif font-bold italic">35AWARDS</p>
+                            <p className="text-[9px] uppercase tracking-widest font-black opacity-40">Recognized Participant 2024</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 className="text-[10px] uppercase tracking-[0.4em] text-neutral-500 mb-6 font-bold">The Social Lens</h2>
+                        <h3 className="text-4xl md:text-5xl font-serif mb-8 leading-tight italic">Bridging Research & Cinema.</h3>
+                        <p className="text-neutral-400 leading-relaxed mb-8 text-lg font-light">
+                            My identity as <strong>nature_loverbnl</strong> is rooted in my academic background in Social Work and Psychology. I utilize filmmaking as an ethnographic tool to document the untouched heritage of the Himalayas.
+                        </p>
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-4">
+                                <i data-lucide="map" className="w-5 h-5 text-white/40"></i>
+                                <div>
+                                    <h4 className="text-sm font-bold uppercase tracking-widest">Ilam Research (2025)</h4>
+                                    <p className="text-xs text-neutral-500">Ethnographic field research on mountain resilience.</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <i data-lucide="award" className="w-5 h-5 text-white/40"></i>
+                                <div>
+                                    <h4 className="text-sm font-bold uppercase tracking-widest">Pexels Featured</h4>
+                                    <p className="text-xs text-neutral-500">Regularly featured for professional-grade landscape quality.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        // --- Experience & Toolkit ---
+        const Experience = () => (
+            <section id="experience" className="py-32 px-6 bg-black">
+                <div className="max-w-6xl mx-auto">
+                    <h2 className="text-[10px] uppercase tracking-[0.4em] text-neutral-500 mb-16 font-bold text-center">Toolkit & Expertise</h2>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <div className="p-10 card-hover">
+                            <i data-lucide="camera" className="mb-6 opacity-40"></i>
+                            <h4 className="font-serif text-xl mb-4">Post-Production</h4>
+                            <p className="text-xs text-neutral-500 leading-relaxed uppercase tracking-tighter">Premiere Pro / After Effects / Lightroom / InDesign</p>
+                        </div>
+                        <div className="p-10 card-hover">
+                            <i data-lucide="database" className="mb-6 opacity-40"></i>
+                            <h4 className="font-serif text-xl mb-4">Data Analysis</h4>
+                            <p className="text-xs text-neutral-500 leading-relaxed uppercase tracking-tighter">SPSS / Kobo Collect / Ethnographic Surveys</p>
+                        </div>
+                        <div className="p-10 card-hover">
+                            <i data-lucide="users" className="mb-6 opacity-40"></i>
+                            <h4 className="font-serif text-xl mb-4">Leadership</h4>
+                            <p className="text-xs text-neutral-500 leading-relaxed uppercase tracking-tighter">VP Bhaktapur Jaycees / Project Management</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        // --- Portfolio ---
+        const Portfolio = () => {
+            const projects = [
+                { title: "The Tea Workers", loc: "Ilam", cat: "Cinematic Film", img: "https://images.unsplash.com/photo-1544733422-251e539ca221" },
+                { title: "Gurung Heritage", loc: "Lamjung", cat: "Photography", img: "https://images.unsplash.com/photo-1501785888041-af3ef285b470" },
+                { title: "Urban Resilience", loc: "Sauraha", cat: "Documentary", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb" }
+            ];
+            return (
+                <section id="portfolio" className="py-32 px-6 bg-neutral-950">
+                    <div className="max-w-7xl mx-auto">
+                        <h2 className="font-serif text-5xl mb-20 italic">Selected Archive</h2>
+                        <div className="grid md:grid-cols-3 gap-4">
+                            {projects.map((p, i) => (
+                                <div key={i} className="group relative overflow-hidden aspect-[4/5] bg-black">
+                                    <img src={p.img + "?auto=format&fit=crop&q=80"} className="w-full h-full object-cover opacity-40 group-hover:opacity-70 group-hover:scale-105 transition duration-1000" alt={p.title} />
+                                    <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black via-transparent to-transparent">
+                                        <span className="text-[8px] uppercase tracking-[0.3em] mb-2 opacity-50">{p.cat}</span>
+                                        <h4 className="text-2xl font-serif mb-1 italic">{p.title}</h4>
+                                        <p className="text-[9px] uppercase opacity-40 tracking-widest">{p.loc}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // --- Footer ---
+        const Footer = () => (
+            <footer id="contact" className="py-24 bg-black px-6 border-t border-white/5 text-center">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-4xl font-serif mb-12 italic">Let's connect in the field.</h2>
+                    <div className="flex flex-wrap justify-center gap-10 text-[9px] uppercase tracking-[0.4em] font-bold opacity-40 mb-16">
+                        <a href="https://youtube.com/@nature_loverbnl" className="hover:text-white transition">YouTube</a>
+                        <a href="https://behance.net/balimantamang" className="hover:text-white transition">Behance</a>
+                        <a href="https://instagram.com/nature_loverbnl" className="hover:text-white transition">Instagram</a>
+                    </div>
+                    <p className="text-[8px] opacity-20 tracking-[0.5em] uppercase">© 2026 NATURE_LOVERBNL | BALIMAN TAMANG</p>
+                </div>
+            </footer>
+        );
+
+        // --- App Entry ---
+        const App = () => (
+            <div>
+                <Nav />
+                <Hero />
+                <About />
+                <Experience />
+                <Portfolio />
+                <Footer />
+            </div>
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+        
+        // Initialize Lucide icons
+        setTimeout(() => lucide.createIcons(), 500);
+    </script>
+</body>
+</html>
