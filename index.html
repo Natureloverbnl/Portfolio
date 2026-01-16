@@ -4,34 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Baliman Tamang | Visual Archive</title>
-  
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&family=Inter:wght@200;400;600&display=swap" rel="stylesheet" />
-  
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-
   <style>
     body { background-color: #030303; color: #fafafa; font-family: 'Inter', sans-serif; overflow-x: hidden; margin: 0; }
     h1, h2, h3 { font-family: 'Playfair Display', serif; }
-    
     .gallery { column-count: 1; column-gap: 2rem; }
     @media (min-width: 768px) { .gallery { column-count: 2; } }
     @media (min-width: 1024px) { .gallery { column-count: 3; } }
-    
     .img-card { position: relative; overflow: hidden; background: #0a0a0a; border-radius: 4px; border: 1px solid rgba(255,255,255,0.03); }
     .img-card img { transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease; width: 100%; height: auto; display: block; }
     .img-card:hover img { transform: scale(1.08); filter: grayscale(0) brightness(1.1); }
-
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
   </style>
 </head>
 <body>
   <div id="root"></div>
-
   <script type="text/babel">
     const { useState } = React;
     const { motion, AnimatePresence, useScroll, useSpring } = FramerMotion;
@@ -41,27 +34,23 @@
       const { scrollYProgress } = useScroll();
       const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
-      // Configured exactly to your screenshot path: assets/images/
+      // Using Absolute URLs to guarantee GitHub finds your assets folder
       const photos = [
-        { id: 1, src: "assets/images/hero.jpg", title: "Himalayan Silence", loc: "Nepal" },
-        { id: 2, src: "assets/images/culture.jpg", title: "Indigenous Heritage", loc: "Sauraha" },
-        { id: 3, src: "assets/images/ilam.jpg", title: "Morning in Ilam", loc: "Eastern Nepal" },
-        { id: 4, src: "assets/images/lamjung.jpg", title: "Highland Resilience", loc: "Lamjung" },
-        { id: 5, src: "assets/images/research.jpg", title: "Social Fieldwork", loc: "Documentation" },
-        { id: 6, src: "assets/images/sauraha.jpg", title: "Tharu Rhythms", loc: "Chitwan" }
+        { id: 1, src: "https://natureloverbnl.github.io/Portfolio/assets/images/hero.jpg", title: "Himalayan Silence", loc: "Nepal" },
+        { id: 2, src: "https://natureloverbnl.github.io/Portfolio/assets/images/culture.jpg", title: "Indigenous Heritage", loc: "Sauraha" },
+        { id: 3, src: "https://natureloverbnl.github.io/Portfolio/assets/images/ilam.jpg", title: "Morning in Ilam", loc: "Eastern Nepal" },
+        { id: 4, src: "https://natureloverbnl.github.io/Portfolio/assets/images/lamjung.jpg", title: "Highland Resilience", loc: "Lamjung" },
+        { id: 5, src: "https://natureloverbnl.github.io/Portfolio/assets/images/research.jpg", title: "Social Fieldwork", loc: "Documentation" },
+        { id: 6, src: "https://natureloverbnl.github.io/Portfolio/assets/images/sauraha.jpg", title: "Tharu Rhythms", loc: "Chitwan" }
       ];
 
       return (
         <div className="min-h-screen">
           <motion.div className="fixed top-0 left-0 right-0 h-[1px] bg-white z-[100] origin-left" style={{ scaleX }} />
-
           <nav className="fixed top-0 w-full flex justify-between items-center px-8 py-8 z-50 mix-blend-difference">
             <h1 className="text-[10px] font-bold tracking-[0.5em] uppercase text-white">Baliman Tamang</h1>
-            <div className="flex gap-8 text-[9px] uppercase tracking-widest opacity-50 hover:opacity-100 transition duration-700">
-              <a href="https://youtube.com/@nature_loverbnl" target="_blank">Films</a>
-            </div>
+            <a href="https://youtube.com/@nature_loverbnl" target="_blank" className="text-[9px] uppercase tracking-widest opacity-50 hover:opacity-100 transition duration-700">Films</a>
           </nav>
-
           <header className="h-[80vh] flex flex-col items-center justify-center text-center px-6">
             <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.5 }}>
               <h1 className="text-8xl md:text-[11rem] font-serif italic tracking-tighter leading-none text-white">Archive</h1>
@@ -72,55 +61,25 @@
               </div>
             </motion.div>
           </header>
-
           <main className="max-w-[1500px] mx-auto px-8 pb-40">
             <div className="gallery">
               {photos.map((photo, i) => (
-                <motion.div
-                  key={photo.id}
-                  initial={{ opacity: 0, y: 60 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 1 }}
-                  onClick={() => setSelected(photo)}
-                  className="mb-14 cursor-pointer group"
-                >
+                <motion.div key={photo.id} initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1, duration: 1 }} onClick={() => setSelected(photo)} className="mb-14 cursor-pointer group">
                   <div className="img-card">
-                    <img 
-                      src={photo.src} 
-                      className="opacity-70 group-hover:opacity-100 grayscale group-hover:grayscale-0"
-                      alt={photo.title}
-                      onError={(e) => {
-                        // Fallback logic if image fails to load
-                        if (!e.target.src.includes('Portfolio')) {
-                          e.target.src = 'https://natureloverbnl.github.io/Portfolio/' + photo.src;
-                        }
-                      }}
-                    />
+                    <img src={photo.src} className="opacity-70 group-hover:opacity-100 grayscale group-hover:grayscale-0" alt={photo.title} />
                   </div>
-                  <div className="mt-6 flex justify-between items-end border-t border-white/5 pt-4">
-                    <div>
-                      <h3 className="text-2xl font-serif italic text-white/90 group-hover:text-white transition-colors">{photo.title}</h3>
-                      <p className="text-[9px] uppercase tracking-widest opacity-30 mt-2 tracking-[0.3em]">{photo.loc}</p>
-                    </div>
+                  <div className="mt-6 border-t border-white/5 pt-4">
+                    <h3 className="text-2xl font-serif italic text-white/90 group-hover:text-white transition-colors">{photo.title}</h3>
+                    <p className="text-[9px] uppercase tracking-widest opacity-30 mt-2 tracking-[0.3em]">{photo.loc}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
           </main>
-
           <AnimatePresence>
             {selected && (
-              <motion.div 
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} 
-                onClick={() => setSelected(null)}
-                className="fixed inset-0 z-[100] bg-black/98 backdrop-blur-3xl flex flex-col items-center justify-center p-4 cursor-zoom-out"
-              >
-                <motion.img 
-                  initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-                  src={selected.src} 
-                  className="max-w-full max-h-[82vh] object-contain rounded-sm shadow-2xl" 
-                />
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelected(null)} className="fixed inset-0 z-[100] bg-black/98 backdrop-blur-3xl flex flex-col items-center justify-center p-4 cursor-zoom-out">
+                <motion.img initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} src={selected.src} className="max-w-full max-h-[82vh] object-contain rounded-sm shadow-2xl" />
                 <div className="mt-12 text-center">
                   <p className="font-serif italic text-4xl text-white">{selected.title}</p>
                   <p className="text-[9px] uppercase tracking-[0.5em] opacity-40 mt-4 italic">Exit Archive</p>
@@ -128,16 +87,12 @@
               </motion.div>
             )}
           </AnimatePresence>
-
           <footer className="py-24 text-center border-t border-white/5 mx-8">
-            <p className="text-[8px] uppercase tracking-[0.6em] opacity-20 italic">
-              &copy; 2026 Baliman Tamang — Documenting Human Connection
-            </p>
+            <p className="text-[8px] uppercase tracking-[0.6em] opacity-20 italic">© 2026 Baliman Tamang</p>
           </footer>
         </div>
       );
     }
-
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
   </script>
