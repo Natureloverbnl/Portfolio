@@ -1,136 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NATURE_LOVERBNL | Visual Archive</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Baliman Tamang | Travel Photographer & Filmmaker</title>
 
-    <style>
-        body { background-color: #050505; color: #fff; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
-        .font-serif { font-family: 'Playfair Display', serif; }
-        .masonry { column-count: 1; column-gap: 1.5rem; }
-        @media (min-width: 768px) { .masonry { column-count: 2; } }
-        @media (min-width: 1024px) { .masonry { column-count: 3; } }
-        .img-container { background: #111; position: relative; overflow: hidden; border-radius: 2px; }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-thumb { background: #222; }
-    </style>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- React & Framer Motion -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #fafafa;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+    }
+    .gallery {
+      column-count: 1;
+      column-gap: 1rem;
+      padding: 1rem;
+    }
+    @media (min-width: 640px) {
+      .gallery {
+        column-count: 2;
+        column-gap: 1.5rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .gallery {
+        column-count: 3;
+        column-gap: 2rem;
+      }
+    }
+    .gallery-item img {
+      width: 100%;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      opacity: 0.85;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      cursor: zoom-in;
+      display: block;
+    }
+    .gallery-item img:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    .overlay-shadow {
+      background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.7) 100%);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 0 0 0.5rem 0.5rem;
+      color: #eee;
+      font-size: 0.85rem;
+      font-style: italic;
+      text-shadow: 0 0 4px rgba(0,0,0,0.7);
+    }
+    /* Lightbox styles */
+    #lightbox-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      cursor: zoom-out;
+      padding: 1rem;
+    }
+    #lightbox-img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 0.75rem;
+      box-shadow: 0 0 20px rgba(255,255,255,0.25);
+    }
+    #lightbox-caption {
+      margin-top: 1rem;
+      color: #ccc;
+      font-style: italic;
+      font-size: 1.1rem;
+      text-align: center;
+      max-width: 90vw;
+    }
+  </style>
 </head>
 <body>
-    <div id="root"></div>
+  <div id="root"></div>
 
-    <script type="text/babel">
-        const { motion, AnimatePresence } = FramerMotion;
-        const { useState } = React;
+  <script type="text/babel">
+    const { useState } = React;
+    const { motion, AnimatePresence } = FramerMotion;
 
-        const App = () => {
-            const [selectedImg, setSelectedImg] = useState(null);
+    const photos = [
+      { id: 1, src: "images/1.jpg", title: "Misty Himalayan Sunrise", location: "Nepal" },
+      { id: 2, src: "images/2.jpg", title: "Tea Fields of Ilam", location: "Nepal" },
+      { id: 3, src: "images/3.jpg", title: "Serene Lakeside Reflection", location: "Switzerland" },
+      { id: 4, src: "images/4.jpg", title: "Cultural Dance in Sauraha", location: "Nepal" },
+      { id: 5, src: "images/5.jpg", title: "Fog over Ghalegaun", location: "Nepal" },
+      { id: 6, src: "images/6.jpg", title: "Portrait: Indigenous Life", location: "Myanmar" }
+    ];
 
-            // UPDATED TO MATCH YOUR EXACT LIST
-            const photos = [
-                { id: 1, title: "Cultural Resilience", cat: "Ethnography", src: "images/Culture.jpg" },
-                { id: 2, title: "Ilam Tea Research", cat: "Field 2025", src: "images/ilam.jpg" },
-                { id: 3, title: "The Himalayan Peak", cat: "Landscape", src: "images/hero.jpg" },
-                { id: 4, title: "Lamjung Series", cat: "Visual Study", src: "images/lamjung.jpg" },
-                { id: 5, title: "Social Research", cat: "Documentation", src: "images/research.jpg" },
-                { id: 6, title: "Sauraha Life", cat: "Social Work", src: "images/sauraha.jpg" }
-            ];
+    function Portfolio() {
+      const [selected, setSelected] = useState(null);
 
-            return (
-                <div className="min-h-screen">
-                    {/* Minimal Navigation */}
-                    <nav className="fixed top-0 w-full z-50 p-8 flex justify-between mix-blend-difference">
-                        <span className="text-xs font-bold tracking-[0.4em] uppercase">nature_loverbnl</span>
-                        <div className="flex gap-6 text-[10px] uppercase tracking-widest opacity-40 font-bold">
-                            <a href="https://youtube.com/@nature_loverbnl" target="_blank" className="hover:opacity-100 transition">YouTube</a>
-                        </div>
-                    </nav>
+      return (
+        <div className="min-h-screen flex flex-col">
+          {/* Header / Nav */}
+          <nav className="fixed top-0 w-full flex justify-between items-center px-8 py-4 bg-black/70 backdrop-blur-md border-b border-gray-700 z-50">
+            <h1 className="font-serif italic text-white text-xl tracking-widest">Baliman Tamang</h1>
+            <div className="space-x-6">
+              <a href="https://youtube.com/@nature_loverbnl" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-300 hover:text-white uppercase tracking-widest font-semibold transition">YouTube</a>
+              <a href="https://behance.net/balimantamang" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-300 hover:text-white uppercase tracking-widest font-semibold transition">Behance</a>
+            </div>
+          </nav>
 
-                    {/* Dramatic Hero Section */}
-                    <header className="h-[70vh] flex flex-col items-center justify-center text-center px-6">
-                        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2 }}>
-                            <h1 className="text-6xl md:text-9xl font-serif italic tracking-tighter mb-4">The Archive</h1>
-                            <div className="h-[1px] w-20 bg-white mx-auto opacity-20 mb-4"></div>
-                            <p className="text-[9px] uppercase tracking-[0.6em] opacity-30">Photography & Social Research</p>
-                        </motion.div>
-                    </header>
+          {/* Hero */}
+          <header className="pt-32 pb-20 text-center px-6 sm:px-12 max-w-[900px] mx-auto flex-grow">
+            <motion.h2 
+              initial={{opacity:0, y: -10}} 
+              animate={{opacity:1, y: 0}} 
+              transition={{duration:1}} 
+              className="text-lg uppercase tracking-widest text-gray-400 mb-3"
+            >
+              Travel Photographer & Filmmaker
+            </motion.h2>
+            <motion.h1 
+              initial={{opacity:0, y: 10}} 
+              animate={{opacity:1, y: 0}} 
+              transition={{delay:0.3, duration:1}} 
+              className="font-serif italic text-5xl sm:text-6xl text-white leading-tight"
+            >
+              Capturing Stories From Around The World
+            </motion.h1>
+            <motion.p
+              initial={{opacity:0}} 
+              animate={{opacity:1}} 
+              transition={{delay:0.6}} 
+              className="mt-6 text-gray-300 max-w-xl mx-auto text-base sm:text-lg"
+            >
+              Explore my curated portfolio of evocative travel photographs and cinematic works showcasing culture, nature, and human connection.
+            </motion.p>
+          </header>
 
-                    {/* Animated Masonry Grid */}
-                    <main className="max-w-[1400px] mx-auto px-6 pb-40">
-                        <div className="masonry space-y-6">
-                            {photos.map((photo, i) => (
-                                <motion.div 
-                                    key={photo.id}
-                                    initial={{ opacity: 0, y: 40 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.1, duration: 0.8 }}
-                                    onClick={() => setSelectedImg(photo)}
-                                    className="img-container group cursor-crosshair"
-                                >
-                                    <motion.img 
-                                        whileHover={{ scale: 1.05 }}
-                                        transition={{ duration: 0.9 }}
-                                        src={photo.src} 
-                                        className="w-full h-auto opacity-60 group-hover:opacity-100 transition-all duration-1000"
-                                        alt={photo.title}
-                                        onError={(e) => {
-                                            // Handle case sensitivity (Try .jpg if .JPG fails or vice versa)
-                                            if (e.target.src.includes('.jpg')) {
-                                                e.target.src = e.target.src.replace('.jpg', '.JPG');
-                                            } else if (e.target.src.includes('.JPG')) {
-                                                e.target.src = e.target.src.replace('.JPG', '.jpg');
-                                            }
-                                        }}
-                                    />
-                                    <div className="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black/90 via-transparent opacity-0 group-hover:opacity-100 transition-all">
-                                        <h3 className="text-xl font-serif italic text-white">{photo.title}</h3>
-                                        <p className="text-[9px] uppercase tracking-widest opacity-40 mt-1">{photo.cat}</p>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </main>
+          {/* Gallery */}
+          <main className="max-w-[1400px] mx-auto pb-28">
+            <div className="gallery">
+              {photos.map(photo => (
+                <motion.div
+                  key={photo.id}
+                  className="gallery-item relative"
+                  initial={{opacity:0, y: 30}}
+                  whileInView={{opacity:1, y:0}}
+                  viewport={{ once: true }}
+                  onClick={() => setSelected(photo)}
+                  aria-label={`View ${photo.title} from ${photo.location}`}
+                >
+                  <img 
+                    src={photo.src} 
+                    alt={`${photo.title}, ${photo.location}`} 
+                    loading="lazy"
+                  />
+                  <div className="overlay-shadow">
+                    <strong>{photo.title}</strong><br />
+                    <span>{photo.location}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </main>
 
-                    {/* Animated Lightbox */}
-                    <AnimatePresence>
-                        {selectedImg && (
-                            <motion.div 
-                                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                                onClick={() => setSelectedImg(null)}
-                                className="fixed inset-0 z-[60] bg-black/fb backdrop-blur-2xl flex items-center justify-center p-4 cursor-zoom-out"
-                            >
-                                <motion.img 
-                                    initial={{ scale: 0.8, opacity: 0 }}
-                                    animate={{ scale: 1, opacity: 1 }}
-                                    transition={{ type: "spring", damping: 25 }}
-                                    src={selectedImg.src} 
-                                    className="max-w-full max-h-[85vh] object-contain shadow-2xl"
-                                />
-                                <div className="absolute bottom-10 text-center">
-                                    <p className="font-serif italic text-2xl mb-1">{selectedImg.title}</p>
-                                    <p className="text-[9px] uppercase tracking-[0.4em] opacity-30">Click anywhere to exit</p>
-                                </div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-
-                    <footer className="py-20 text-center border-t border-white/5 opacity-20 text-[8px] uppercase tracking-[0.5em]">
-                        © 2026 NATURE_LOVERBNL — BALIMAN TAMANG
-                    </footer>
+          {/* Lightbox */}
+          <AnimatePresence>
+            {selected && (
+              <motion.div 
+                key="lightbox-bg"
+                id="lightbox-bg"
+                initial={{opacity:0}} 
+                animate={{opacity:1}} 
+                exit={{opacity:0}} 
+                onClick={() => setSelected(null)}
+                role="dialog" 
+                aria-modal="true" 
+                aria-label={`Expanded view of ${selected.title} at ${selected.location}`}
+              >
+                <img id="lightbox-img" src={selected.src} alt={`${selected.title}, ${selected.location}`} />
+                <div id="lightbox-caption">
+                  <strong>{selected.title}</strong> — <em>{selected.location}</em>
                 </div>
-            );
-        };
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
-    </script>
+          {/* Footer */}
+          <footer className="text-center p-8 border-t border-gray-800 text-gray-500 text-xs select-none">
+            &copy; 2026 Baliman Tamang | Travel Photography & Filmmaking
+          </footer>
+        </div>
+      )
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<Portfolio />);
+  </script>
 </body>
 </html>
