@@ -6,6 +6,7 @@
   <meta name="description" content="nature_loverbnl - Award-Recognized Travel Photographer, Filmmaker & Social Researcher. Award-winning visual storyteller from Nepal capturing cultural heritage and landscape photography." />
   <meta name="keywords" content="photographer, filmmaker, travel photography, Nepal, visual storytelling, ethnographic, landscape, nature_loverbnl" />
   <title>nature_loverbnl | Award-Winning Travel Photographer & Filmmaker</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&family=Inter:wght@200;400;600&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -98,16 +99,26 @@
       display: flex;
       list-style: none;
       gap: 32px;
+      align-items: center;
+    }
+
+    nav li {
+      position: relative;
     }
     
     nav a {
       font-size: 10px;
+      font-weight: 600;
       text-transform: uppercase;
       opacity: 0.7;
       text-decoration: none;
       color: inherit;
       transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.08em;
     }
     
     nav a::after {
@@ -128,6 +139,70 @@
     nav a:hover::after {
       width: 100%;
     }
+
+    /* Dropdown Menu */
+    .dropdown-toggle::before {
+      content: '☰';
+      font-size: 14px;
+      margin-right: 6px;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: rgba(20, 20, 20, 0.98);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      min-width: 160px;
+      list-style: none;
+      margin-top: 12px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 50;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      padding: 6px 0;
+    }
+
+    nav li:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu li {
+      position: static;
+      margin: 0;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 16px;
+      font-size: 11px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+
+    .dropdown-menu a::after {
+      display: none;
+    }
+
+    .dropdown-menu a::before {
+      display: none;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      padding-left: 20px;
+      color: #f5f5f5;
+    }
     
     /* Hero Section */
     .hero {
@@ -141,6 +216,8 @@
       margin-top: 60px;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(rgba(10, 10, 10, 0.5), rgba(10, 10, 10, 0.5)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80') center/cover no-repeat;
+      background-attachment: fixed;
     }
     
     .hero::before {
@@ -621,10 +698,15 @@
   <nav>
     <h1>nature_loverbnl</h1>
     <ul>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li>
+        <a href="#" class="dropdown-toggle">Menu</a>
+        <ul class="dropdown-menu">
+          <li><a href="#work">Portfolio</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Toolkit</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </li>
     </ul>
   </nav>
 
@@ -642,7 +724,7 @@
     <!-- About Section -->
     <section id="about">
       <h2>About Me</h2>
-      <div class="award-badge">🏆 Featured Pexels Photographer | 9th Annual International 35 AWARDS Winner</div>
+      <div class="award-badge"><i class="fas fa-trophy"></i> Featured Pexels Photographer | 9th Annual International 35 AWARDS Winner</div>
       
       <div class="about-grid">
         <div class="about-text">
@@ -678,34 +760,34 @@
       
       <div class="skills-grid">
         <div class="skill-card">
-          <div class="skill-icon">📸</div>
+          <div class="skill-icon"><i class="fas fa-camera"></i></div>
           <div class="skill-name">Lightroom Classic</div>
           <div class="skill-type">Photo Editing & Processing</div>
         </div>
         <div class="skill-card">
-          <div class="skill-icon">🎨</div>
+          <div class="skill-icon"><i class="fas fa-paintbrush"></i></div>
           <div class="skill-name">Photoshop</div>
           <div class="skill-type">Image Manipulation & Design</div>
         </div>
         <div class="skill-card">
-          <div class="skill-icon">🎬</div>
+          <div class="skill-icon"><i class="fas fa-film"></i></div>
           <div class="skill-name">Premiere Pro</div>
           <div class="skill-type">Video Editing & Production</div>
         </div>
         <div class="skill-card">
-          <div class="skill-icon">📐</div>
+          <div class="skill-icon"><i class="fas fa-book"></i></div>
           <div class="skill-name">InDesign</div>
           <div class="skill-type">Layout & Graphic Design</div>
         </div>
         <div class="skill-card">
-          <div class="skill-icon">✨</div>
+          <div class="skill-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
           <div class="skill-name">After Effects</div>
           <div class="skill-type">Motion Graphics & Animation</div>
         </div>
         <div class="skill-card">
-          <div class="skill-icon">📊</div>
-          <div class="skill-name">SPSS</div>
-          <div class="skill-type">Statistical & Data Analysis</div>
+          <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
+          <div class="skill-name">Data Analysis</div>
+          <div class="skill-type">Research & Documentation</div>
         </div>
       </div>
     </section>
@@ -719,17 +801,17 @@
           <p style="color: rgba(255, 255, 255, 0.7); margin-bottom: 32px;">I'm actively seeking exhibitions, social impact projects, and creative partnerships that tell stories of cultural heritage, community resilience, and environmental conservation.</p>
           
           <div class="contact-item">
-            <div class="contact-label">📧 Email</div>
+            <div class="contact-label"><i class="fas fa-envelope"></i> Email</div>
             <a href="mailto:baliman.tamang77@gmail.com" class="contact-link">baliman.tamang77@gmail.com</a>
           </div>
           
           <div class="contact-item">
-            <div class="contact-label">🔗 Follow & Connect</div>
+            <div class="contact-label"><i class="fas fa-share-alt"></i> Follow & Connect</div>
             <div class="social-links">
-              <a href="https://www.instagram.com/nature_loverbnl" target="_blank" rel="noopener noreferrer" class="social-link">📷 Instagram</a>
-              <a href="https://www.pexels.com/@natureloverbnl" target="_blank" rel="noopener noreferrer" class="social-link">🖼 Pexels</a>
-              <a href="https://youtube.com/@nature_loverbnl" target="_blank" rel="noopener noreferrer" class="social-link">🎬 YouTube</a>
-              <a href="https://www.behance.net/balimantamang" target="_blank" rel="noopener noreferrer" class="social-link">🎨 Behance</a>
+              <a href="https://www.instagram.com/nature_loverbnl" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
+              <a href="https://www.pexels.com/@natureloverbnl" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fas fa-image"></i> Pexels</a>
+              <a href="https://youtube.com/@nature_loverbnl" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-youtube"></i> YouTube</a>
+              <a href="https://www.behance.net/balimantamang" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-behance"></i> Behance</a>
             </div>
           </div>
         </div>
